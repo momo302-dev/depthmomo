@@ -9,9 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   DEPTHFORGE · tema CYBERFUNK (CSS tertanam — tanpa file luar)
-   ============================================================ */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0A0A0D; --bg2:#0E0E13; --card:#101016;
@@ -21,7 +18,7 @@
   --acc:#FCEE0A; --acc-hi:#FFF652; --acc2:#00F0FF;
   --ok:#00FF9C; --err:#FF2A55; --warn:#FF7A1A;
   --mono:'Share Tech Mono',ui-monospace,monospace;
-  --disp:'Rajdhani',sans-serif;
+  --disp:'Rajdhani','Segoe UI',sans-serif;
   --ch:8px;
 }
 html,body{height:100%}
@@ -41,6 +38,8 @@ body::after{
 }
 ::selection{background:var(--acc);color:#0A0A0D}
 :focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+svg.i{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── bar atas ── */
 .topbar{position:relative;height:58px;display:flex;align-items:center;
@@ -68,7 +67,7 @@ body::after{
   clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);
   transition:.15s}
 .chip:hover{box-shadow:inset 0 0 0 1px var(--acc);color:var(--ink)}
-.chip svg{width:13px;height:13px}
+.chip svg.i{width:13px;height:13px}
 .dot{width:7px;height:7px;background:var(--dim);transition:.2s}
 .dot.on{background:var(--ok);box-shadow:0 0 8px rgba(0,255,156,.6)}
 .dot.mid{background:var(--acc);box-shadow:0 0 8px rgba(252,238,10,.6);animation:pulse 1.1s infinite}
@@ -104,7 +103,7 @@ aside::-webkit-scrollbar-thumb:hover{background:var(--line3)}
 .grp{padding:17px 18px 20px;border-bottom:1px solid var(--line)}
 .grp-h{display:flex;align-items:center;gap:9px;margin-bottom:14px;
   font:700 11px var(--disp);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
-.grp-h svg{width:14px;height:14px;color:var(--acc)}
+.grp-h svg.i{width:14px;height:14px;color:var(--acc)}
 .grp-h span{color:var(--acc);font-family:var(--mono);font-weight:400}
 .grp-h::after{content:'';flex:1;height:6px;opacity:.45;
   background:repeating-linear-gradient(-45deg,var(--line2) 0 4px,transparent 4px 8px)}
@@ -124,7 +123,7 @@ aside::-webkit-scrollbar-thumb:hover{background:var(--line3)}
   padding:10px 14px;border:0;cursor:pointer;color:#0A0A0D;background:var(--acc);
   clip-path:polygon(var(--ch) 0,100% 0,100% calc(100% - var(--ch)),calc(100% - var(--ch)) 100%,0 100%,0 var(--ch));
   transition:transform .15s,background .15s,filter .15s}
-.btn svg{width:15px;height:15px}
+.btn svg.i{width:15px;height:15px}
 .btn:hover{background:var(--acc-hi);transform:translate(-1px,-1px);
   filter:drop-shadow(3px 3px 0 rgba(252,238,10,.3))}
 .btn:active{transform:none;filter:none}
@@ -137,7 +136,7 @@ aside::-webkit-scrollbar-thumb:hover{background:var(--line3)}
   align-items:center;text-align:left;justify-items:start;padding:9px 13px}
 .btn.wide + .btn.wide{margin-top:9px}
 .btn .ic{width:32px;height:32px;display:grid;place-items:center;background:rgba(10,10,13,.16)}
-.btn .ic svg{width:16px;height:16px}
+.btn .ic svg.i{width:16px;height:16px}
 .btn.ghost .ic{background:rgba(255,255,255,.05)}
 .btn .t{display:flex;flex-direction:column;gap:1px}
 .btn .t b{font:700 13px var(--disp);letter-spacing:.04em}
@@ -211,7 +210,7 @@ select option{background:var(--card)}
 .modes button{display:flex;align-items:center;gap:7px;background:transparent;border:0;
   color:var(--mut);font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;
   padding:8px 11px;cursor:pointer;transition:color .15s}
-.modes button svg{width:13px;height:13px}
+.modes button svg.i{width:13px;height:13px}
 .modes button:hover{color:var(--ink)}
 .modes button.on{color:var(--acc)}
 .modes button.on::before{content:'[';margin-right:7px;color:var(--acc)}
@@ -224,7 +223,7 @@ select option{background:var(--card)}
   color:var(--mut);transition:.15s;
   clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
 .zoombox button:hover{color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
-.zoombox svg{width:14px;height:14px}
+.zoombox svg.i{width:14px;height:14px}
 
 /* ── viewport ── */
 .viewport{position:relative;flex:1;min-height:0;overflow:hidden;background:#08080B;
@@ -233,7 +232,7 @@ select option{background:var(--card)}
     linear-gradient(rgba(0,240,255,.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,240,255,.045) 1px, transparent 1px);
   background-size:auto, 32px 32px, 32px 32px}
-.viewport canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.viewport canvas#canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
 .hud{position:absolute;font:400 9.5px var(--mono);letter-spacing:.2em;
   text-transform:uppercase;color:rgba(0,240,255,.5);pointer-events:none;z-index:3}
 .hud.tl{top:21px;left:26px;display:flex;align-items:center;gap:8px}
@@ -352,7 +351,7 @@ select option{background:var(--card)}
   </div>
   <button class="chip" id="btnServer" title="Tes koneksi ke server Python lokal (opsional)">
     <span class="dot" id="srvDot"></span>
-    <i data-lucide="server"></i>
+    <svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7"/><rect x="3" y="13" width="18" height="7"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
     <span id="srvLabel">server ai: mati</span>
   </button>
 </header>
@@ -367,10 +366,10 @@ select option{background:var(--card)}
     </nav>
 
     <div class="grp">
-      <div class="grp-h"><i data-lucide="image-up"></i><span>01</span>Unggah Foto</div>
+      <div class="grp-h"><svg class="i" viewBox="0 0 24 24"><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2M12 15V4M8 8l4-4 4 4"/></svg><span>01</span>Unggah Foto</div>
       <div class="row">
-        <button class="btn" id="btnPick"><i data-lucide="folder-open"></i>Pilih Foto</button>
-        <button class="btn ghost" id="btnSample"><i data-lucide="sparkles"></i>Contoh</button>
+        <button class="btn" id="btnPick"><svg class="i" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Pilih Foto</button>
+        <button class="btn ghost" id="btnSample"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.9 2.6L22 18.5l-2.1.9L19 22l-.9-2.6-2.1-.9 2.1-.9z"/></svg>Contoh</button>
       </div>
       <div class="field">
         <label>Sumber kedalaman <em>bagian gambar yang diukur</em></label>
@@ -385,14 +384,14 @@ select option{background:var(--card)}
       <div class="field">
         <label>Mode AI <em id="srvState">opsional · butuh server lokal</em></label>
         <button class="btn ghost wide" id="btnNeural" style="margin-top:0">
-          <span class="ic"><i data-lucide="cpu"></i></span>
+          <span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></span>
           <span class="t"><b>Konversi Neural</b><small>kedalaman lebih akurat via MiDaS</small></span>
         </button>
       </div>
     </div>
 
     <div class="grp">
-      <div class="grp-h"><i data-lucide="sliders-horizontal"></i><span>02</span>Atur Kedalaman</div>
+      <div class="grp-h"><svg class="i" viewBox="0 0 24 24"><path d="M4 8h10M18 8h2M4 16h4M12 16h8"/><circle cx="16" cy="8" r="2"/><circle cx="10" cy="16" r="2"/></svg><span>02</span>Atur Kedalaman</div>
       <div class="field">
         <label>Gaya cepat <em>satu klik, atur otomatis</em></label>
         <div class="presets" id="presets">
@@ -410,11 +409,11 @@ select option{background:var(--card)}
           <input type="checkbox" id="tglInv"><span></span>Putih = tinggi (invert)
         </label>
       </div>
-      <button class="btn ghost wide" id="btnReset"><i data-lucide="rotate-ccw"></i>Kembalikan semula</button>
+      <button class="btn ghost wide" id="btnReset"><svg class="i" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5"/></svg>Kembalikan semula</button>
     </div>
 
     <div class="grp">
-      <div class="grp-h"><i data-lucide="palette"></i><span>03</span>Gaya Tampilan</div>
+      <div class="grp-h"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 10h.01M12 7.5h.01M15.5 10h.01M12 21a3 3 0 0 0 0-6"/></svg><span>03</span>Gaya Tampilan</div>
       <div class="field">
         <label>Peta warna</label>
         <select id="selCmap">
@@ -436,27 +435,27 @@ select option{background:var(--card)}
       </div>
       <div id="slidersView"></div>
       <div class="row" style="margin-top:12px">
-        <button class="btn ghost" id="btnFit" title="Paskan gambar ke layar (F)"><i data-lucide="scan"></i>Pas layar</button>
-        <button class="btn ghost" id="btnLight" title="Kembalikan arah cahaya 3D (L)"><i data-lucide="sun"></i>Cahaya</button>
+        <button class="btn ghost" id="btnFit" title="Paskan gambar ke layar (F)"><svg class="i" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg>Pas layar</button>
+        <button class="btn ghost" id="btnLight" title="Kembalikan arah cahaya 3D (L)"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>Cahaya</button>
       </div>
     </div>
 
     <div class="grp">
-      <div class="grp-h"><i data-lucide="download"></i><span>04</span>Simpan Hasil</div>
+      <div class="grp-h"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg><span>04</span>Simpan Hasil</div>
       <button class="btn wide" id="expPng16">
-        <span class="ic"><i data-lucide="layers"></i></span>
+        <span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/></svg></span>
         <span class="t"><b>PNG 16-bit</b><small>terbaik untuk CNC & lithophane</small></span>
       </button>
       <button class="btn ghost wide" id="expPng8">
-        <span class="ic"><i data-lucide="image-down"></i></span>
+        <span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><circle cx="9" cy="10" r="1.5"/><path d="M3 17l5-4 4 3 4-4 5 5"/></svg></span>
         <span class="t"><b>PNG 8-bit</b><small>ukuran kecil, untuk web</small></span>
       </button>
       <button class="btn ghost wide" id="expPgm">
-        <span class="ic"><i data-lucide="binary"></i></span>
+        <span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/><path d="M7.5 14v6M14 4h3l-3 5h3"/></svg></span>
         <span class="t"><b>RAW PGM 16-bit</b><small>format mentah .pgm</small></span>
       </button>
       <button class="btn ghost wide" id="expRelief">
-        <span class="ic"><i data-lucide="mountain"></i></span>
+        <span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 20L10 6l4 7 2-3 5 10z"/></svg></span>
         <span class="t"><b>Gambar Relief</b><small>hasil 3D terarsir, siap cetak</small></span>
       </button>
       <p class="note">// semua ekspor dihitung ulang pada resolusi penuh —
@@ -468,15 +467,15 @@ select option{background:var(--card)}
   <section class="stage">
     <div class="stage-bar">
       <nav class="modes" id="modes">
-        <button data-mode="depth" class="on" title="Peta kedalaman"><i data-lucide="layers"></i>Kedalaman</button>
-        <button data-mode="relief" title="Relief 3D — seret untuk arah cahaya"><i data-lucide="mountain"></i>3D</button>
-        <button data-mode="contour" title="Garis kontur seperti peta"><i data-lucide="map"></i>Kontur</button>
-        <button data-mode="split" title="Bandingkan foto vs hasil"><i data-lucide="columns-2"></i>Banding</button>
+        <button data-mode="depth" class="on" title="Peta kedalaman"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/></svg>Kedalaman</button>
+        <button data-mode="relief" title="Relief 3D — seret untuk arah cahaya"><svg class="i" viewBox="0 0 24 24"><path d="M3 20L10 6l4 7 2-3 5 10z"/></svg>3D</button>
+        <button data-mode="contour" title="Garis kontur seperti peta"><svg class="i" viewBox="0 0 24 24"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>Kontur</button>
+        <button data-mode="split" title="Bandingkan foto vs hasil"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M12 4v16"/></svg>Banding</button>
       </nav>
       <div class="stage-hint" id="hint"></div>
       <div class="zoombox">
         <span id="zoomVal">100%</span>
-        <button id="btnZoomFit" title="Pas layar (F)"><i data-lucide="maximize"></i></button>
+        <button id="btnZoomFit" title="Pas layar (F)"><svg class="i" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
       </div>
     </div>
 
@@ -495,13 +494,13 @@ select option{background:var(--card)}
             <div class="dz-card"><b class="n" data-n="3"></b><h4>Simpan hasil</h4><p>PNG 16-bit siap CNC & lithophane</p></div>
           </div>
           <div class="dz-actions">
-            <button class="btn" id="dzPick"><i data-lucide="image-up"></i>Pilih Foto</button>
-            <button class="btn ghost" id="dzSample"><i data-lucide="sparkles"></i>Coba Contoh</button>
+            <button class="btn" id="dzPick"><svg class="i" viewBox="0 0 24 24"><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2M12 15V4M8 8l4-4 4 4"/></svg>Pilih Foto</button>
+            <button class="btn ghost" id="dzSample"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Coba Contoh</button>
           </div>
         </div>
       </div>
       <div class="badge-src" id="srcBadge"></div>
-      <input type="file" id="fileInput" accept="image/*" hidden>
+      <input type="file" id="fileInput" accept="image/*" hidden style="display:none">
     </div>
 
     <footer class="statusbar">
@@ -516,9 +515,7 @@ select option{background:var(--card)}
 
 <div id="toasts"></div>
 
-<script async src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
-
-<!-- ═══════════ ENGINE (js/engine.js — tertanam) ═══════════ -->
+<!-- ═══════════ ENGINE ═══════════ -->
 <script>
 const Engine = (() => {
   'use strict';
@@ -529,7 +526,6 @@ const Engine = (() => {
   };
   const clampI = (v, a, b) => v < a ? a : (v > b ? b : v);
   const cl01 = v => v < 0 ? 0 : (v > 1 ? 1 : v);
-
   function toBase(img, mode, out) {
     const d = img.data;
     for (let i = 0, p = 0; i < out.length; i++, p += 4) {
@@ -548,8 +544,7 @@ const Engine = (() => {
   function passH(src, dst, w, h, r) {
     const inv = 1 / (2 * r + 1);
     for (let y = 0; y < h; y++) {
-      const row = y * w;
-      let s = 0;
+      const row = y * w; let s = 0;
       for (let k = -r; k <= r; k++) s += src[row + clampI(k, 0, w - 1)];
       for (let x = 0; x < w; x++) {
         dst[row + x] = s * inv;
@@ -581,27 +576,23 @@ const Engine = (() => {
       const d = (i - 512) / 512;
       lut[i] = Math.exp(-(d * d) / (2 * sigmaR * sigmaR));
     }
-    const sw = new Float32Array(25);
-    let k = 0;
+    const sw = new Float32Array(25); let k = 0;
     for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++)
       sw[k++] = Math.exp(-(dx * dx + dy * dy) / (2 * 1.4 * 1.4));
     const out = new Float32Array(src.length);
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const c = src[y * w + x];
-        let ws = 0, vs = 0; k = 0;
-        for (let dy = -r; dy <= r; dy++) {
-          const yy = clampI(y + dy, 0, h - 1) * w;
-          for (let dx = -r; dx <= r; dx++, k++) {
-            const v = src[yy + clampI(x + dx, 0, w - 1)];
-            let di = ((v - c) * 512 + 512) | 0;
-            di = di < 0 ? 0 : (di > 1024 ? 1024 : di);
-            const wt = sw[k] * lut[di];
-            ws += wt; vs += wt * v;
-          }
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const c = src[y * w + x]; let ws = 0, vs = 0; k = 0;
+      for (let dy = -r; dy <= r; dy++) {
+        const yy = clampI(y + dy, 0, h - 1) * w;
+        for (let dx = -r; dx <= r; dx++, k++) {
+          const v = src[yy + clampI(x + dx, 0, w - 1)];
+          let di = ((v - c) * 512 + 512) | 0;
+          di = di < 0 ? 0 : (di > 1024 ? 1024 : di);
+          const wt = sw[k] * lut[di];
+          ws += wt; vs += wt * v;
         }
-        out[y * w + x] = vs / ws;
       }
+      out[y * w + x] = vs / ws;
     }
     return out;
   }
@@ -626,11 +617,8 @@ const Engine = (() => {
       let v = (eq ? eq[i] : i) / 255;
       v = clampI((v * 255 - p.inBlack) / range, 0, 1);
       v = (v * (p.outWhite - p.outBlack) + p.outBlack) / 255;
-      v = cl01(v);
-      v = Math.pow(v, g);
-      v = v + br;
-      v = cf * (v - 0.5) + 0.5;
-      v = cl01(v);
+      v = cl01(v); v = Math.pow(v, g); v = v + br;
+      v = cf * (v - 0.5) + 0.5; v = cl01(v);
       if (p.invert) v = 1 - v;
       lut[i] = v;
     }
@@ -640,12 +628,8 @@ const Engine = (() => {
     const t0 = performance.now();
     const w = imgData.width, h = imgData.height, n = w * h;
     let cur;
-    if (opts.base) {
-      cur = Float32Array.from(opts.base);
-    } else {
-      cur = new Float32Array(n);
-      toBase(imgData, p.channel, cur);
-    }
+    if (opts.base) cur = Float32Array.from(opts.base);
+    else { cur = new Float32Array(n); toBase(imgData, p.channel, cur); }
     const blurR = Math.round(p.blur);
     const detR = clampI(Math.round(p.detailRadius), 1, 20);
     const low = blurR >= 1 ? boxBlur(cur, w, h, blurR) : cur;
@@ -657,8 +641,7 @@ const Engine = (() => {
       for (let i = 0; i < n; i++)
         shape[i] = low[i] + k * ((small[i] - low[i]) + 0.55 * (cur[i] - small[i]));
     }
-    if (p.smooth > 0)
-      shape = bilateral(shape, w, h, 0.03 + (p.smooth / 100) * 0.30);
+    if (p.smooth > 0) shape = bilateral(shape, w, h, 0.03 + (p.smooth / 100) * 0.30);
     const eq  = p.equalize ? eqLUTFrom(shape, n) : null;
     const lut = buildLUT(p, eq);
     const depth8 = new Uint8ClampedArray(n);
@@ -668,17 +651,13 @@ const Engine = (() => {
     for (let i = 0; i < n; i++) {
       const v = lut[cl01(shape[i]) * 255 | 0];
       const v16 = (v * 65535 + 0.5) | 0;
-      depth16[i] = v16;
-      depth8[i] = v16 >> 8;
+      depth16[i] = v16; depth8[i] = v16 >> 8;
       hist[Math.min(47, (v * 48) | 0)]++;
       if (v < mn) mn = v; if (v > mx) mx = v;
       sum += v;
     }
-    return {
-      depth8, depth16, w, h, hist,
-      stats: { min: mn, max: mx, mean: sum / n },
-      ms: performance.now() - t0
-    };
+    return { depth8, depth16, w, h, hist,
+      stats: { min: mn, max: mx, mean: sum / n }, ms: performance.now() - t0 };
   }
   function reliefNormals(depth8, w, h, strength) {
     const f = new Float32Array(w * h);
@@ -699,10 +678,8 @@ const Engine = (() => {
     return { nx, ny, nz };
   }
   const MATERIALS = {
-    gypsum:   { kind: 'flat', v: 214 },
-    graphite: { kind: 'flat', v: 78 },
-    copper:   { kind: 'rgb', r: 205, g: 128, b: 82 },
-    source:   { kind: 'src' }
+    gypsum: { kind: 'flat', v: 214 }, graphite: { kind: 'flat', v: 78 },
+    copper: { kind: 'rgb', r: 205, g: 128, b: 82 }, source: { kind: 'src' }
   };
   function relight(norm, w, h, light, material, srcData) {
     const len = Math.hypot(light.x, light.y, light.z) || 1;
@@ -719,7 +696,7 @@ const Engine = (() => {
       if (mat.kind === 'src' && srcData) { r = srcData[p]; g = srcData[p + 1]; b = srcData[p + 2]; }
       else if (mat.kind === 'flat') { r = g = b = mat.v; }
       else { r = mat.r; g = mat.g; b = mat.b; }
-      d[p]     = Math.min(255, r * a + sp);
+      d[p] = Math.min(255, r * a + sp);
       d[p + 1] = Math.min(255, g * a + sp);
       d[p + 2] = Math.min(255, b * a + sp);
       d[p + 3] = 255;
@@ -730,41 +707,27 @@ const Engine = (() => {
 })();
 </script>
 
-<!-- ═══════════ VIEWER (js/viewer.js — tertanam, tema Cyberfunk) ═══════════ -->
+<!-- ═══════════ VIEWER ═══════════ -->
 <script>
 const THEME = {
-  acc:            '#FCEE0A',
-  accGlow:        'rgba(252,238,10,.85)',
-  cyan:           '#00F0FF',
-  cyanSoft:       'rgba(0,240,255,.35)',
-  contourBg:      '#0A0A0E',
-  contourMinor:   '#4E5866',
-  panelFill:      '#101014',
-  panelLine:      '#30303A',
-  mono:           '"Share Tech Mono", monospace'
+  acc:'#FCEE0A', accGlow:'rgba(252,238,10,.85)', cyanSoft:'rgba(0,240,255,.35)',
+  contourBg:'#0A0A0E', contourMinor:'#4E5866',
+  panelFill:'#101014', panelLine:'#30303A',
+  mono:'"Share Tech Mono", monospace'
 };
 class Viewer {
   constructor(canvas) {
-    this.cv = canvas;
-    this.cx = canvas.getContext('2d');
-    this.mode = 'depth';
-    this.colormap = 'grayscale';
-    this.material = 'gypsum';
-    this.reliefStrength = 2.2;
-    this.contourCount = 14;
+    this.cv = canvas; this.cx = canvas.getContext('2d');
+    this.mode = 'depth'; this.colormap = 'grayscale'; this.material = 'gypsum';
+    this.reliefStrength = 2.2; this.contourCount = 14;
     this.light = { x: -0.6, y: -0.55, z: 0.62 };
     this.t = { s: 1, ox: 0, oy: 0, fit: true };
-    this.splitX = 0.5;
-    this.reveal = 1;
-    this.onZoom = null;
+    this.splitX = 0.5; this.reveal = 1; this.onZoom = null;
     this.srcCanvas = null; this.srcPixels = null;
-    this.depth = null; this.dw = 0; this.dh = 0;
-    this.norm = null;
-    this.depthCv = null; this.reliefCv = null;
-    this.contourPaths = null;
+    this.depth = null; this.dw = 0; this.dh = 0; this.norm = null;
+    this.depthCv = null; this.reliefCv = null; this.contourPaths = null;
     this.dirtyDepth = this.dirtyNorm = this.dirtyRelight = this.dirtyContour = true;
-    this._lut = null; this._lutName = '';
-    this._drag = null; this._raf = 0;
+    this._lut = null; this._lutName = ''; this._drag = null; this._raf = 0;
     this._bind();
   }
   setSource(canvas, pixels) { this.srcCanvas = canvas; this.srcPixels = pixels; }
@@ -896,8 +859,7 @@ class Viewer {
   }
   _drawMode(cx) {
     if (this.mode === 'relief') {
-      this._ensureRelief();
-      cx.drawImage(this.reliefCv, 0, 0);
+      this._ensureRelief(); cx.drawImage(this.reliefCv, 0, 0);
     } else if (this.mode === 'contour') {
       this._ensureContour();
       cx.fillStyle = THEME.contourBg; cx.fillRect(0, 0, this.dw, this.dh);
@@ -922,8 +884,7 @@ class Viewer {
       cx.fillStyle = THEME.panelFill; cx.fill(); cx.stroke();
       cx.beginPath(); cx.moveTo(hx - r * 0.35, this.dh / 2); cx.lineTo(hx + r * 0.35, this.dh / 2); cx.stroke();
     } else {
-      this._ensureDepthCv();
-      cx.drawImage(this.depthCv, 0, 0);
+      this._ensureDepthCv(); cx.drawImage(this.depthCv, 0, 0);
     }
   }
   _applyFit(W, H) {
@@ -1011,32 +972,19 @@ class Viewer {
 }
 </script>
 
-<!-- ═══════════ APP (js/app.js — tertanam) ═══════════ -->
+<!-- ═══════════ APP ═══════════ -->
 <script>
 (() => {
   'use strict';
   const $ = s => document.querySelector(s);
   const SERVER = 'http://127.0.0.1:8787';
 
-  const params = { ...Engine.DEFAULTS };
-  const view = { colormap: 'grayscale', material: 'gypsum', relief: 2.2, contours: 14 };
-  const state = {
-    file: null, fileName: '', fullCanvas: null, fullCtx: null,
-    previewCanvas: null, previewData: null,
-    neuralActive: false, neuralCanvas: null, neuralBase: null, server: null
-  };
-
-  const viewer = new Viewer($('#canvas'));
-  const dropzone = $('#dropzone'), srcBadge = $('#srcBadge');
-  const segChannel = $('#segChannel');
-  const sliders = {};
-  let _t = 0;
-
+  /* ---- toast paling awal + penangkap error global ---- */
   function toast(msg, kind = 'ok', ms = 3200) {
     const el = document.createElement('div');
     el.className = 'toast ' + kind;
     el.textContent = msg;
-    $('#toasts').appendChild(el);
+    document.getElementById('toasts').appendChild(el);
     requestAnimationFrame(() => el.classList.add('show'));
     let done = false;
     const dismiss = () => {
@@ -1047,6 +995,21 @@ class Viewer {
     if (ms > 0) setTimeout(dismiss, ms);
     return { dismiss };
   }
+  window.addEventListener('error', e => {
+    toast('Kesalahan JS: ' + e.message, 'err', 9000);
+  });
+
+  const params = { ...Engine.DEFAULTS };
+  const view = { colormap: 'grayscale', material: 'gypsum', relief: 2.2, contours: 14 };
+  const state = {
+    file: null, fileName: '', fullCanvas: null, fullCtx: null,
+    previewCanvas: null, previewData: null,
+    neuralActive: false, neuralCanvas: null, neuralBase: null, server: null
+  };
+
+  let viewer, dropzone, srcBadge, segChannel, fileInput, vp;
+  const sliders = {};
+  let _t = 0;
 
   function buildSlider(cfg, mount, obj, onChange) {
     const scaled = cfg.scale || 1;
@@ -1091,14 +1054,6 @@ class Viewer {
     { key: 'contours', label: 'Jumlah kontur',   min: 3, max: 40 }
   ];
 
-  PIPE_SLIDERS.forEach(cfg => sliders[cfg.key] = buildSlider(cfg, $('#slidersPipeline'), params, () => schedule()));
-  VIEW_SLIDERS.forEach(cfg => buildSlider(cfg, $('#slidersView'), view, k => {
-    if (k === 'relief') viewer.setStrength(view.relief);
-    if (k === 'contours') viewer.setContours(view.contours);
-  }));
-
-  function refreshSliders() { Object.values(sliders).forEach(s => s.refresh()); }
-
   function schedule() { clearTimeout(_t); _t = setTimeout(processNow, 70); }
 
   function processNow() {
@@ -1128,45 +1083,58 @@ class Viewer {
     }
   }
 
+  /* ============ MUAT GAMBAR (inti perbaikan upload) ============ */
   function loadImage(blob, name) {
-    if (!blob || !blob.type.startsWith('image/'))
-      return toast('Format tidak didukung — gunakan JPG/PNG.', 'err');
+    if (!blob) return;
+    // longgar: terima walau tipe kosong; tolak hanya tipe non-gambar yang jelas
+    if (blob.type && !blob.type.startsWith('image/'))
+      return toast('Format tidak didukung (' + blob.type + ') — gunakan JPG/PNG.', 'err');
     const url = URL.createObjectURL(blob);
     const img = new Image();
     img.onload = () => {
-      const W = img.naturalWidth, H = img.naturalHeight;
-      const fs = Math.min(1, Math.sqrt(16e6 / (W * H)));
-      const fc = document.createElement('canvas');
-      fc.width = Math.max(1, Math.round(W * fs));
-      fc.height = Math.max(1, Math.round(H * fs));
-      const fctx = fc.getContext('2d', { willReadFrequently: true });
-      fctx.imageSmoothingQuality = 'high';
-      fctx.drawImage(img, 0, 0, fc.width, fc.height);
+      try {
+        const W = img.naturalWidth || img.width, H = img.naturalHeight || img.height;
+        if (!W || !H) throw new Error('dimensi nol');
+        const fs = Math.min(1, Math.sqrt(16e6 / (W * H)));
+        const fc = document.createElement('canvas');
+        fc.width = Math.max(1, Math.round(W * fs));
+        fc.height = Math.max(1, Math.round(H * fs));
+        const fctx = fc.getContext('2d', { willReadFrequently: true });
+        fctx.imageSmoothingQuality = 'high';
+        fctx.drawImage(img, 0, 0, fc.width, fc.height);
 
-      const ps = Math.min(1, 1200 / Math.max(fc.width, fc.height));
-      const pc = document.createElement('canvas');
-      pc.width = Math.max(1, Math.round(fc.width * ps));
-      pc.height = Math.max(1, Math.round(fc.height * ps));
-      const pctx = pc.getContext('2d', { willReadFrequently: true });
-      pctx.imageSmoothingQuality = 'high';
-      pctx.drawImage(fc, 0, 0, pc.width, pc.height);
+        const ps = Math.min(1, 1200 / Math.max(fc.width, fc.height));
+        const pc = document.createElement('canvas');
+        pc.width = Math.max(1, Math.round(fc.width * ps));
+        pc.height = Math.max(1, Math.round(fc.height * ps));
+        const pctx = pc.getContext('2d', { willReadFrequently: true });
+        pctx.imageSmoothingQuality = 'high';
+        pctx.drawImage(fc, 0, 0, pc.width, pc.height);
 
-      state.file = blob; state.fileName = name || 'gambar';
-      state.fullCanvas = fc; state.fullCtx = fctx;
-      state.previewCanvas = pc;
-      state.previewData = pctx.getImageData(0, 0, pc.width, pc.height);
-      state.neuralActive = false; state.neuralBase = null;
-      setNeuralBtn(false);
-      segChannel.classList.remove('off');
+        state.file = blob; state.fileName = name || 'gambar';
+        state.fullCanvas = fc; state.fullCtx = fctx;
+        state.previewCanvas = pc;
+        state.previewData = pctx.getImageData(0, 0, pc.width, pc.height);
+        state.neuralActive = false; state.neuralBase = null;
+        setNeuralBtn(false);
+        segChannel.classList.remove('off');
 
-      viewer.setSource(pc, state.previewData);
-      viewer.newScan();
-      dropzone.classList.add('hide');
-      updateBadge(W, H, fs);
-      processNow();
-      URL.revokeObjectURL(url);
+        viewer.setSource(pc, state.previewData);
+        viewer.newScan();
+        dropzone.classList.add('hide');
+        updateBadge(W, H, fs);
+        processNow();
+        toast('Foto dimuat — atur kedalaman lalu simpan.', 'ok');
+      } catch (err) {
+        toast('Gagal memproses gambar: ' + err.message, 'err', 6000);
+      } finally {
+        URL.revokeObjectURL(url);
+      }
     };
-    img.onerror = () => toast('Gagal membaca gambar.', 'err');
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      toast('Gagal membaca gambar. Jika foto iPhone (.HEIC), konversi dulu ke JPG.', 'err', 7000);
+    };
     img.src = url;
   }
 
@@ -1177,372 +1145,398 @@ class Viewer {
     srcBadge.classList.add('show');
   }
 
-  async function loadSample() {
-    const seeds = ['basalt', 'kanion', 'kabut', 'dune', 'rimba', 'fjord'];
-    const seed = seeds[(Math.random() * seeds.length) | 0];
-    toast('Mengambil gambar contoh…', 'info', 1600);
+  /* contoh offline — dibuat di kanvas, tanpa internet */
+  function makeSample() {
+    const c = document.createElement('canvas'); c.width = 1400; c.height = 950;
+    const x = c.getContext('2d');
+    const sky = x.createLinearGradient(0, 0, 0, 700);
+    sky.addColorStop(0, '#202A3C'); sky.addColorStop(.6, '#5A6E8C'); sky.addColorStop(1, '#C9A476');
+    x.fillStyle = sky; x.fillRect(0, 0, 1400, 700);
+    const g = x.createRadialGradient(1030, 300, 10, 1030, 300, 260);
+    g.addColorStop(0, 'rgba(255,236,190,.95)'); g.addColorStop(.25, 'rgba(255,200,120,.45)');
+    g.addColorStop(1, 'rgba(255,200,120,0)');
+    x.fillStyle = g; x.beginPath(); x.arc(1030, 300, 260, 0, 7); x.fill();
+    x.fillStyle = '#FFE9C4'; x.beginPath(); x.arc(1030, 300, 46, 0, 7); x.fill();
+    [{ y: 430, c: '#5E6E86', amp: 60, sd: 3 }, { y: 500, c: '#46536B', amp: 80, sd: 7 },
+     { y: 580, c: '#333D52', amp: 95, sd: 11 }, { y: 680, c: '#222A3C', amp: 110, sd: 5 }]
+    .forEach((L, li) => {
+      x.fillStyle = L.c; x.beginPath(); x.moveTo(0, 950); x.lineTo(0, L.y);
+      for (let px = 0; px <= 1400; px += 10) {
+        const t = px / 1400 * Math.PI * 2;
+        x.lineTo(px, L.y - Math.abs(Math.sin(t * L.sd + li)) * L.amp - Math.sin(t * 2.3 + li * 2) * 18);
+      }
+      x.lineTo(1400, 950); x.closePath(); x.fill();
+    });
+    const fog = x.createLinearGradient(0, 540, 0, 820);
+    fog.addColorStop(0, 'rgba(200,190,180,0)'); fog.addColorStop(.55, 'rgba(200,190,180,.18)');
+    fog.addColorStop(1, 'rgba(210,200,190,.34)');
+    x.fillStyle = fog; x.fillRect(0, 540, 1400, 280);
+    x.fillStyle = '#161C28'; x.beginPath(); x.moveTo(0, 950);
+    for (let px = 0; px <= 1400; px += 8)
+      x.lineTo(px, 840 + Math.sin(px * .02) * 14 + Math.sin(px * .11 + 2) * 7);
+    x.lineTo(1400, 950); x.closePath(); x.fill();
+    if (c.toBlob) c.toBlob(b => b ? loadImage(b, 'contoh-offline.png')
+      : toast('Gagal membuat contoh.', 'err'), 'image/png');
+    else toast('toBlob tidak didukung peramban ini.', 'err');
+  }
+
+  /* ============ INISIALISASI (dengan try/catch per bagian) ============ */
+  function init() {
     try {
-      const r = await fetch('https://picsum.photos/seed/' + seed + '/1400/950.jpg');
-      const b = await r.blob();
-      loadImage(b, 'contoh-' + seed + '.jpg');
-    } catch {
-      toast('Gagal mengambil contoh (butuh koneksi internet).', 'err');
-    }
-  }
+      viewer = new Viewer($('#canvas'));
+      dropzone = $('#dropzone'); srcBadge = $('#srcBadge');
+      segChannel = $('#segChannel'); fileInput = $('#fileInput'); vp = $('#viewport');
 
-  const fileInput = $('#fileInput');
-  const pick = () => fileInput.click();
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files[0]) loadImage(fileInput.files[0], fileInput.files[0].name);
-    fileInput.value = '';
-  });
-  $('#btnPick').addEventListener('click', pick);
-  $('#dzPick').addEventListener('click', e => { e.stopPropagation(); pick(); });
-  $('#btnSample').addEventListener('click', loadSample);
-  $('#dzSample').addEventListener('click', e => { e.stopPropagation(); loadSample(); });
-  dropzone.addEventListener('click', pick);
-
-  const vp = $('#viewport');
-  ['dragenter', 'dragover'].forEach(ev => vp.addEventListener(ev, e => { e.preventDefault(); vp.classList.add('drag'); }));
-  ['dragleave', 'drop'].forEach(ev => vp.addEventListener(ev, e => { e.preventDefault(); vp.classList.remove('drag'); }));
-  vp.addEventListener('drop', e => {
-    const f = e.dataTransfer.files[0];
-    if (f) loadImage(f, f.name);
-  });
-  window.addEventListener('paste', e => {
-    const f = e.clipboardData.files[0];
-    if (f && f.type.startsWith('image/')) loadImage(f, f.name || 'tempelan.png');
-  });
-
-  function setParam(k, v) {
-    params[k] = v;
-    if (['inBlack', 'inWhite', 'outBlack', 'outWhite'].includes(k)) {
-      params.inBlack = Math.min(params.inBlack, params.inWhite - 1);
-      params.inWhite = Math.max(params.inWhite, params.inBlack + 1);
-      params.outBlack = Math.min(params.outBlack, params.outWhite - 1);
-      params.outWhite = Math.max(params.outWhite, params.outBlack + 1);
-      ['inBlack', 'inWhite', 'outBlack', 'outWhite'].forEach(kk => sliders[kk] && sliders[kk].refresh());
-    }
-    schedule();
-  }
-
-  segChannel.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-    segChannel.querySelectorAll('button').forEach(x => x.classList.remove('on'));
-    b.classList.add('on');
-    setParam('channel', b.dataset.v);
-  }));
-
-  $('#tglEq').addEventListener('change', e => { params.equalize = e.target.checked; schedule(); });
-  $('#tglInv').addEventListener('change', e => { params.invert = e.target.checked; schedule(); });
-
-  const PRESETS = {
-    foto:   { blur: 1, detail: 40, detailRadius: 2, smooth: 8,  equalize: false, contrast: 14, brightness: 0, gamma: 1.05, inBlack: 0,  inWhite: 255, outBlack: 0, outWhite: 255, invert: false },
-    gravir: { blur: 2, detail: 70, detailRadius: 1, smooth: 0,  equalize: true,  contrast: 28, brightness: 0, gamma: 1.20, inBlack: 10, inWhite: 245, outBlack: 0, outWhite: 255, invert: false },
-    halus:  { blur: 7, detail: 0,  detailRadius: 3, smooth: 60, equalize: false, contrast: 6,  brightness: 0, gamma: 1.00, inBlack: 0,  inWhite: 255, outBlack: 0, outWhite: 255, invert: false }
-  };
-  $('#presets').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-    Object.assign(params, PRESETS[b.dataset.p]);
-    $('#tglEq').checked = params.equalize;
-    $('#tglInv').checked = params.invert;
-    refreshSliders();
-    schedule();
-  }));
-
-  $('#btnReset').addEventListener('click', () => {
-    Object.assign(params, Engine.DEFAULTS);
-    $('#tglEq').checked = false;
-    $('#tglInv').checked = false;
-    refreshSliders();
-    schedule();
-  });
-
-  $('#selCmap').addEventListener('change', e => viewer.setColormap(e.target.value));
-  $('#selMat').addEventListener('change', e => viewer.setMaterial(e.target.value));
-  $('#btnFit').addEventListener('click', () => viewer.fit());
-  $('#btnZoomFit').addEventListener('click', () => viewer.fit());
-  $('#btnLight').addEventListener('click', () => viewer.resetLight());
-  viewer.onZoom = s => { $('#zoomVal').textContent = Math.round(s * 100) + '%'; };
-
-  const HINTS = {
-    depth: 'roda = zum · seret = geser · dobel-klik = pas layar · tombol 1-4 ganti mode',
-    relief: 'seret di kanvas = arah cahaya · roda = zum · tombol 1-4 ganti mode',
-    contour: 'garis halus = interval kecil · garis kuning = garis mayor · tombol 1-4 ganti mode',
-    split: 'seret lingkaran tengah untuk membandingkan asli vs depth · tombol 1-4 ganti mode'
-  };
-  function setMode(m) {
-    document.querySelectorAll('#modes button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
-    viewer.mode = m;
-    $('#hint').textContent = HINTS[m];
-    viewer.invalidate();
-  }
-  document.querySelectorAll('#modes button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
-  setMode('depth');
-
-  window.addEventListener('keydown', e => {
-    if (e.target.matches('input,select,textarea')) return;
-    const m = { 1: 'depth', 2: 'relief', 3: 'contour', 4: 'split' }[e.key];
-    if (m) setMode(m);
-    if (e.key === 'f' || e.key === 'F') viewer.fit();
-    if (e.key === 'l' || e.key === 'L') viewer.resetLight();
-  });
-
-  new ResizeObserver(() => viewer.invalidate()).observe(vp);
-
-  function setSrvUI(on, neural) {
-    $('#srvDot').className = 'dot' + (on ? (neural ? ' mid' : ' on') : '');
-    $('#srvLabel').textContent = 'server ai: ' + (on ? (neural ? 'midas siap' : 'klasik') : 'mati');
-    $('#srvState').textContent = on ? (neural ? 'MiDaS siap' : 'klasik saja') : 'opsional · butuh server lokal';
-  }
-
-  async function pingServer(silent) {
-    try {
-      const ctrl = new AbortController();
-      const to = setTimeout(() => ctrl.abort(), 2500);
-      const r = await fetch(SERVER + '/api/ping', { signal: ctrl.signal });
-      clearTimeout(to);
-      const j = await r.json();
-      state.server = j;
-      setSrvUI(true, j.neural);
-      if (!silent) toast('Server tersambung' + (j.neural ? ' — neural MiDaS siap.' : ' — mode klasik.'), 'ok');
-      return j;
-    } catch {
-      state.server = null;
-      setSrvUI(false, false);
-      if (!silent) toast('Tidak menemukan server di ' + SERVER + '. Jalankan: python py/server.py', 'warn', 6000);
-      return null;
-    }
-  }
-  $('#btnServer').addEventListener('click', () => pingServer(false));
-
-  function setNeuralBtn(active) {
-    $('#btnNeural').innerHTML = active
-      ? '<span class="ic"><i data-lucide="undo-2"></i></span><span class="t"><b>Kembali ke klasik</b><small>buang hasil neural</small></span>'
-      : '<span class="ic"><i data-lucide="cpu"></i></span><span class="t"><b>Konversi Neural</b><small>kedalaman lebih akurat via MiDaS</small></span>';
-    window.lucide && lucide.createIcons();
-  }
-
-  $('#btnNeural').addEventListener('click', async () => {
-    if (state.neuralActive) {
-      state.neuralActive = false; state.neuralBase = null;
-      setNeuralBtn(false);
-      segChannel.classList.remove('off');
-      srcBadge.textContent = srcBadge.textContent.replace(' · neural MiDaS', '');
-      processNow();
-      return;
-    }
-    if (!state.server && !(await pingServer(false))) return;
-    if (!state.file) return toast('Muat gambar terlebih dahulu.', 'warn');
-
-    const busy = toast('Mengirim ke server — model MiDaS memproses…', 'info', 0);
-    try {
-      const fd = new FormData();
-      fd.append('file', state.file);
-      fd.append('params', JSON.stringify({
-        channel: params.channel, blur: params.blur, detail: params.detail,
-        detail_radius: params.detailRadius, smooth: params.smooth, equalize: params.equalize,
-        contrast: params.contrast, brightness: params.brightness, gamma: params.gamma,
-        in_black: params.inBlack, in_white: params.inWhite,
-        out_black: params.outBlack, out_white: params.outWhite, invert: params.invert
+      PIPE_SLIDERS.forEach(cfg => sliders[cfg.key] = buildSlider(cfg, $('#slidersPipeline'), params, () => schedule()));
+      VIEW_SLIDERS.forEach(cfg => buildSlider(cfg, $('#slidersView'), view, k => {
+        if (k === 'relief') viewer.setStrength(view.relief);
+        if (k === 'contours') viewer.setContours(view.contours);
       }));
-      const r = await fetch(SERVER + '/api/depth?model=midas', { method: 'POST', body: fd });
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      const blob = await r.blob();
-      const bmp = await createImageBitmap(blob);
+    } catch (err) { toast('Init bagian 1 gagal: ' + err.message, 'err', 10000); return; }
 
-      const pc = document.createElement('canvas');
-      pc.width = state.previewData.width; pc.height = state.previewData.height;
-      const px = pc.getContext('2d', { willReadFrequently: true });
-      px.drawImage(bmp, 0, 0, pc.width, pc.height);
-      state.neuralCanvas = pc;
-
-      const d = px.getImageData(0, 0, pc.width, pc.height).data;
-      const base = new Float32Array(pc.width * pc.height);
-      for (let i = 0, p = 0; i < base.length; i++, p += 4) base[i] = d[p] / 255;
-      state.neuralBase = base;
-      state.neuralActive = true;
-
-      setNeuralBtn(true);
-      segChannel.classList.add('off');
-      srcBadge.textContent += ' · neural MiDaS';
-      busy.dismiss();
-      viewer.newScan();
-      processNow();
-      toast('Depth neural dimuat — level & invert masih bisa diatur.', 'ok');
-    } catch (err) {
-      busy.dismiss();
-      toast('Gagal memanggil server: ' + err.message, 'err', 6000);
-    }
-  });
-
-  const saveBlob = (blob, name) => {
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = name;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-  };
-  const baseName = () => (state.fileName || 'gambar').replace(/\.[^.]+$/, '');
-
-  function fullDepth() {
-    const c = state.fullCanvas;
-    const srcData = state.fullCtx.getImageData(0, 0, c.width, c.height);
-    let base = null;
-    if (state.neuralActive) base = neuralFullBase(c.width, c.height);
-    return { ...Engine.processData(srcData, params, { base }), srcData };
-  }
-
-  function neuralFullBase(w, h) {
-    const c = document.createElement('canvas');
-    c.width = w; c.height = h;
-    const cx = c.getContext('2d', { willReadFrequently: true });
-    cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
-    cx.drawImage(state.neuralCanvas, 0, 0, w, h);
-    const d = cx.getImageData(0, 0, w, h).data;
-    const base = new Float32Array(w * h);
-    for (let i = 0, p = 0; i < base.length; i++, p += 4) base[i] = d[p] / 255;
-    return base;
-  }
-
-  function encodePGM16(depth16, w, h) {
-    const head = new TextEncoder().encode('P5\n' + w + ' ' + h + '\n65535\n');
-    const data = new Uint8Array(w * h * 2);
-    for (let i = 0, j = 0; i < depth16.length; i++, j += 2) {
-      data[j] = depth16[i] >>> 8;
-      data[j + 1] = depth16[i] & 0xFF;
-    }
-    return new Blob([head, data], { type: 'application/octet-stream' });
-  }
-
-  const CRC_TABLE = (() => {
-    const t = new Uint32Array(256);
-    for (let n = 0; n < 256; n++) {
-      let c = n;
-      for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
-      t[n] = c >>> 0;
-    }
-    return t;
-  })();
-  const crcUpdate = (c, buf) => {
-    for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
-    return c >>> 0;
-  };
-  function pngChunk(type, data) {
-    const out = new Uint8Array(12 + data.length);
-    const dv = new DataView(out.buffer);
-    dv.setUint32(0, data.length);
-    for (let i = 0; i < 4; i++) out[4 + i] = type.charCodeAt(i);
-    out.set(data, 8);
-    let c = 0xFFFFFFFF;
-    c = crcUpdate(c, out.subarray(4, 8 + data.length));
-    dv.setUint32(8 + data.length, (c ^ 0xFFFFFFFF) >>> 0);
-    return out;
-  }
-  async function encodePNG16(depth16, w, h) {
-    const stride = w * 2 + 1;
-    const cs = new CompressionStream('deflate');
-    const writer = cs.writable.getWriter();
-    const chunks = [];
-    let crcC = crcUpdate(0xFFFFFFFF, new TextEncoder().encode('IDAT'));
-    let readDone = false, readErr = null;
-    (async () => {
-      const rd = cs.readable.getReader();
-      try {
-        for (;;) {
-          const { done, value } = await rd.read();
-          if (done) break;
-          chunks.push(value);
-          crcC = crcUpdate(crcC, value);
-        }
-      } catch (e) { readErr = e; }
-      readDone = true;
-    })();
-
-    const row = new Uint8Array(stride);
-    for (let y = 0; y < h; y++) {
-      row[0] = 0;
-      const b = y * w;
-      for (let x = 0; x < w; x++) {
-        const v = depth16[b + x];
-        row[1 + x * 2] = v >>> 8;
-        row[2 + x * 2] = v & 0xFF;
-      }
-      await writer.write(row);
-      if ((y & 255) === 255) await new Promise(r => setTimeout(r));
-    }
-    await writer.close();
-    while (!readDone) await new Promise(r => setTimeout(r, 5));
-    if (readErr) throw readErr;
-
-    const total = chunks.reduce((s, c) => s + c.length, 0);
-    const head = new Uint8Array(8);
-    new DataView(head.buffer).setUint32(0, total);
-    head.set([0x49, 0x44, 0x41, 0x54], 4);
-    const tail = new Uint8Array(4);
-    new DataView(tail.buffer).setUint32(0, crcC);
-
-    const ihdr = new Uint8Array(13);
-    const dv = new DataView(ihdr.buffer);
-    dv.setUint32(0, w); dv.setUint32(4, h);
-    ihdr[8] = 16;
-    const sig = new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]);
-    return new Blob([sig, pngChunk('IHDR', ihdr), head, new Blob(chunks), tail, pngChunk('IEND', new Uint8Array(0))],
-      { type: 'image/png' });
-  }
-
-  async function exportDepth(kind) {
-    if (!state.fullCanvas) return toast('Muat gambar terlebih dahulu.', 'warn');
-    const busy = toast('Memproses resolusi penuh… (gambar besar butuh beberapa detik)', 'info', 0);
-    await new Promise(r => setTimeout(r, 40));
+    /* ---- jalur unggah: tombol, dropzone, seret, tempel ---- */
     try {
-      const res = fullDepth();
-      const name = baseName();
-      if (kind === 'png8') {
-        const c = document.createElement('canvas');
-        c.width = res.w; c.height = res.h;
-        c.getContext('2d').putImageData(new ImageData(res.depth8, res.w, res.h), 0, 0);
-        saveBlob(await new Promise(r => c.toBlob(r, 'image/png')), name + '-depth8.png');
-      } else if (kind === 'png16') {
-        if (!('CompressionStream' in window)) throw new Error('tanpa CompressionStream');
-        saveBlob(await encodePNG16(res.depth16, res.w, res.h), name + '-depth16.png');
-      } else if (kind === 'pgm') {
-        saveBlob(encodePGM16(res.depth16, res.w, res.h), name + '-depth16.pgm');
-      } else if (kind === 'relief') {
-        const norm = Engine.reliefNormals(res.depth8, res.w, res.h, view.relief);
-        const img = Engine.relight(norm, res.w, res.h, viewer.light, view.material,
-          view.material === 'source' ? res.srcData.data : null);
-        const c = document.createElement('canvas');
-        c.width = res.w; c.height = res.h;
-        c.getContext('2d').putImageData(img, 0, 0);
-        saveBlob(await new Promise(r => c.toBlob(r, 'image/png')), name + '-relief.png');
+      const pick = () => fileInput.click();
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files && fileInput.files[0])
+          loadImage(fileInput.files[0], fileInput.files[0].name);
+        fileInput.value = '';
+      });
+      $('#btnPick').addEventListener('click', pick);
+      $('#dzPick').addEventListener('click', e => { e.stopPropagation(); pick(); });
+      $('#btnSample').addEventListener('click', makeSample);
+      $('#dzSample').addEventListener('click', e => { e.stopPropagation(); makeSample(); });
+      dropzone.addEventListener('click', pick);
+
+      window.addEventListener('dragover', e => e.preventDefault());
+      window.addEventListener('drop', e => e.preventDefault());
+      ['dragenter', 'dragover'].forEach(ev =>
+        vp.addEventListener(ev, e => { e.preventDefault(); vp.classList.add('drag'); }));
+      ['dragleave', 'drop'].forEach(ev =>
+        vp.addEventListener(ev, e => { e.preventDefault(); vp.classList.remove('drag'); }));
+      vp.addEventListener('drop', e => {
+        const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (f) loadImage(f, f.name);
+      });
+      window.addEventListener('paste', e => {
+        try {
+          const f = e.clipboardData && e.clipboardData.files && e.clipboardData.files[0];
+          if (f) loadImage(f, f.name || 'tempelan.png');
+        } catch (_) {}
+      });
+    } catch (err) { toast('Init jalur unggah gagal: ' + err.message, 'err', 10000); }
+
+    /* ---- kontrol pipeline ---- */
+    try {
+      function setParam(k, v) {
+        params[k] = v;
+        if (['inBlack', 'inWhite', 'outBlack', 'outWhite'].includes(k)) {
+          params.inBlack = Math.min(params.inBlack, params.inWhite - 1);
+          params.inWhite = Math.max(params.inWhite, params.inBlack + 1);
+          params.outBlack = Math.min(params.outBlack, params.outWhite - 1);
+          params.outWhite = Math.max(params.outWhite, params.outBlack + 1);
+          ['inBlack', 'inWhite', 'outBlack', 'outWhite'].forEach(kk => sliders[kk] && sliders[kk].refresh());
+        }
+        schedule();
       }
-      busy.dismiss();
-      toast('Ekspor selesai — ' + res.w + '×' + res.h + ' · ' + kind.toUpperCase(), 'ok');
-    } catch (err) {
-      busy.dismiss();
-      if (kind === 'png16') {
-        toast('PNG 16-bit gagal di peramban ini — memakai PNG 8-bit.', 'warn', 5000);
-        exportDepth('png8');
-      } else {
-        toast('Ekspor gagal: ' + err.message, 'err', 5000);
+      segChannel.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        segChannel.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        setParam('channel', b.dataset.v);
+      }));
+      $('#tglEq').addEventListener('change', e => { params.equalize = e.target.checked; schedule(); });
+      $('#tglInv').addEventListener('change', e => { params.invert = e.target.checked; schedule(); });
+
+      const PRESETS = {
+        foto:   { blur: 1, detail: 40, detailRadius: 2, smooth: 8,  equalize: false, contrast: 14, brightness: 0, gamma: 1.05, inBlack: 0,  inWhite: 255, outBlack: 0, outWhite: 255, invert: false },
+        gravir: { blur: 2, detail: 70, detailRadius: 1, smooth: 0,  equalize: true,  contrast: 28, brightness: 0, gamma: 1.20, inBlack: 10, inWhite: 245, outBlack: 0, outWhite: 255, invert: false },
+        halus:  { blur: 7, detail: 0,  detailRadius: 3, smooth: 60, equalize: false, contrast: 6,  brightness: 0, gamma: 1.00, inBlack: 0,  inWhite: 255, outBlack: 0, outWhite: 255, invert: false }
+      };
+      const refreshSliders = () => Object.values(sliders).forEach(s => s.refresh());
+      $('#presets').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        Object.assign(params, PRESETS[b.dataset.p]);
+        $('#tglEq').checked = params.equalize;
+        $('#tglInv').checked = params.invert;
+        refreshSliders(); schedule();
+      }));
+      $('#btnReset').addEventListener('click', () => {
+        Object.assign(params, Engine.DEFAULTS);
+        $('#tglEq').checked = false; $('#tglInv').checked = false;
+        refreshSliders(); schedule();
+      });
+      $('#selCmap').addEventListener('change', e => viewer.setColormap(e.target.value));
+      $('#selMat').addEventListener('change', e => viewer.setMaterial(e.target.value));
+      $('#btnFit').addEventListener('click', () => viewer.fit());
+      $('#btnZoomFit').addEventListener('click', () => viewer.fit());
+      $('#btnLight').addEventListener('click', () => viewer.resetLight());
+      viewer.onZoom = s => { $('#zoomVal').textContent = Math.round(s * 100) + '%'; };
+    } catch (err) { toast('Init kontrol gagal: ' + err.message, 'err', 10000); }
+
+    /* ---- mode & pintasan ---- */
+    try {
+      const HINTS = {
+        depth: 'roda = zum · seret = geser · dobel-klik = pas layar · tombol 1-4 ganti mode',
+        relief: 'seret di kanvas = arah cahaya · roda = zum · tombol 1-4 ganti mode',
+        contour: 'garis halus = interval kecil · garis kuning = garis mayor · tombol 1-4 ganti mode',
+        split: 'seret lingkaran tengah untuk membandingkan asli vs depth · tombol 1-4 ganti mode'
+      };
+      function setMode(m) {
+        document.querySelectorAll('#modes button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
+        viewer.mode = m;
+        $('#hint').textContent = HINTS[m];
+        viewer.invalidate();
+      }
+      document.querySelectorAll('#modes button').forEach(b =>
+        b.addEventListener('click', () => setMode(b.dataset.mode)));
+      $('#hint').textContent = HINTS.depth;
+      window.addEventListener('keydown', e => {
+        if (e.target.matches('input,select,textarea')) return;
+        const m = { 1: 'depth', 2: 'relief', 3: 'contour', 4: 'split' }[e.key];
+        if (m) setMode(m);
+        if (e.key === 'f' || e.key === 'F') viewer.fit();
+        if (e.key === 'l' || e.key === 'L') viewer.resetLight();
+      });
+      new ResizeObserver(() => viewer && viewer.invalidate()).observe(vp);
+    } catch (err) { toast('Init mode gagal: ' + err.message, 'err', 10000); }
+
+    /* ---- server opsional ---- */
+    function setSrvUI(on, neural) {
+      $('#srvDot').className = 'dot' + (on ? (neural ? ' mid' : ' on') : '');
+      $('#srvLabel').textContent = 'server ai: ' + (on ? (neural ? 'midas siap' : 'klasik') : 'mati');
+      $('#srvState').textContent = on ? (neural ? 'MiDaS siap' : 'klasik saja') : 'opsional · butuh server lokal';
+    }
+    async function pingServer(silent) {
+      try {
+        const ctrl = new AbortController();
+        const to = setTimeout(() => ctrl.abort(), 2500);
+        const r = await fetch(SERVER + '/api/ping', { signal: ctrl.signal });
+        clearTimeout(to);
+        const j = await r.json();
+        state.server = j; setSrvUI(true, j.neural);
+        if (!silent) toast('Server tersambung.', 'ok');
+        return j;
+      } catch {
+        state.server = null; setSrvUI(false, false);
+        if (!silent) toast('Server tidak ditemukan di ' + SERVER, 'warn', 6000);
+        return null;
       }
     }
-  }
-  $('#expPng16').addEventListener('click', () => exportDepth('png16'));
-  $('#expPng8').addEventListener('click', () => exportDepth('png8'));
-  $('#expPgm').addEventListener('click', () => exportDepth('pgm'));
-  $('#expRelief').addEventListener('click', () => exportDepth('relief'));
+    $('#btnServer').addEventListener('click', () => pingServer(false));
+    pingServer(true);
 
-  window.lucide && lucide.createIcons();
-  $('#hint').textContent = HINTS.depth;
-  pingServer(true);
+    const IC_CPU = '<svg class="i" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>';
+    const IC_UNDO = '<svg class="i" viewBox="0 0 24 24"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg>';
+    function setNeuralBtn(active) {
+      $('#btnNeural').innerHTML = active
+        ? '<span class="ic">' + IC_UNDO + '</span><span class="t"><b>Kembali ke klasik</b><small>buang hasil neural</small></span>'
+        : '<span class="ic">' + IC_CPU + '</span><span class="t"><b>Konversi Neural</b><small>kedalaman lebih akurat via MiDaS</small></span>';
+    }
+
+    $('#btnNeural').addEventListener('click', async () => {
+      if (state.neuralActive) {
+        state.neuralActive = false; state.neuralBase = null;
+        setNeuralBtn(false);
+        segChannel.classList.remove('off');
+        srcBadge.textContent = srcBadge.textContent.replace(' · neural MiDaS', '');
+        processNow(); return;
+      }
+      if (!state.server && !(await pingServer(false))) return;
+      if (!state.file) return toast('Muat gambar terlebih dahulu.', 'warn');
+      const busy = toast('Mengirim ke server — MiDaS memproses…', 'info', 0);
+      try {
+        const fd = new FormData();
+        fd.append('file', state.file);
+        fd.append('params', JSON.stringify({
+          channel: params.channel, blur: params.blur, detail: params.detail,
+          detail_radius: params.detailRadius, smooth: params.smooth, equalize: params.equalize,
+          contrast: params.contrast, brightness: params.brightness, gamma: params.gamma,
+          in_black: params.inBlack, in_white: params.inWhite,
+          out_black: params.outBlack, out_white: params.outWhite, invert: params.invert
+        }));
+        const r = await fetch(SERVER + '/api/depth?model=midas', { method: 'POST', body: fd });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const blob = await r.blob();
+        const bmp = await createImageBitmap(blob);
+        const pc = document.createElement('canvas');
+        pc.width = state.previewData.width; pc.height = state.previewData.height;
+        const px = pc.getContext('2d', { willReadFrequently: true });
+        px.drawImage(bmp, 0, 0, pc.width, pc.height);
+        state.neuralCanvas = pc;
+        const d = px.getImageData(0, 0, pc.width, pc.height).data;
+        const base = new Float32Array(pc.width * pc.height);
+        for (let i = 0, p = 0; i < base.length; i++, p += 4) base[i] = d[p] / 255;
+        state.neuralBase = base; state.neuralActive = true;
+        setNeuralBtn(true);
+        segChannel.classList.add('off');
+        srcBadge.textContent += ' · neural MiDaS';
+        busy.dismiss(); viewer.newScan(); processNow();
+        toast('Depth neural dimuat.', 'ok');
+      } catch (err) {
+        busy.dismiss();
+        toast('Gagal memanggil server: ' + err.message, 'err', 6000);
+      }
+    });
+
+    /* ---- ekspor ---- */
+    const saveBlob = (blob, name) => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name; a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    };
+    const baseName = () => (state.fileName || 'gambar').replace(/\.[^.]+$/, '');
+
+    function neuralFullBase(w, h) {
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const cx = c.getContext('2d', { willReadFrequently: true });
+      cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
+      cx.drawImage(state.neuralCanvas, 0, 0, w, h);
+      const d = cx.getImageData(0, 0, w, h).data;
+      const base = new Float32Array(w * h);
+      for (let i = 0, p = 0; i < base.length; i++, p += 4) base[i] = d[p] / 255;
+      return base;
+    }
+    function fullDepth() {
+      const c = state.fullCanvas;
+      const srcData = state.fullCtx.getImageData(0, 0, c.width, c.height);
+      const base = state.neuralActive ? neuralFullBase(c.width, c.height) : null;
+      return { ...Engine.processData(srcData, params, { base }), srcData };
+    }
+    function encodePGM16(depth16, w, h) {
+      const head = new TextEncoder().encode('P5\n' + w + ' ' + h + '\n65535\n');
+      const data = new Uint8Array(w * h * 2);
+      for (let i = 0, j = 0; i < depth16.length; i++, j += 2) {
+        data[j] = depth16[i] >>> 8; data[j + 1] = depth16[i] & 0xFF;
+      }
+      return new Blob([head, data], { type: 'application/octet-stream' });
+    }
+    const CRC_TABLE = (() => {
+      const t = new Uint32Array(256);
+      for (let n = 0; n < 256; n++) {
+        let c = n;
+        for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        t[n] = c >>> 0;
+      }
+      return t;
+    })();
+    const crcUpdate = (c, buf) => {
+      for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+      return c >>> 0;
+    };
+    function pngChunk(type, data) {
+      const out = new Uint8Array(12 + data.length);
+      const dv = new DataView(out.buffer);
+      dv.setUint32(0, data.length);
+      for (let i = 0; i < 4; i++) out[4 + i] = type.charCodeAt(i);
+      out.set(data, 8);
+      let c = 0xFFFFFFFF;
+      c = crcUpdate(c, out.subarray(4, 8 + data.length));
+      dv.setUint32(8 + data.length, (c ^ 0xFFFFFFFF) >>> 0);
+      return out;
+    }
+    async function encodePNG16(depth16, w, h) {
+      const stride = w * 2 + 1;
+      const cs = new CompressionStream('deflate');
+      const writer = cs.writable.getWriter();
+      const chunks = [];
+      let crcC = crcUpdate(0xFFFFFFFF, new TextEncoder().encode('IDAT'));
+      let readDone = false, readErr = null;
+      (async () => {
+        const rd = cs.readable.getReader();
+        try {
+          for (;;) {
+            const { done, value } = await rd.read();
+            if (done) break;
+            chunks.push(value);
+            crcC = crcUpdate(crcC, value);
+          }
+        } catch (e) { readErr = e; }
+        readDone = true;
+      })();
+      const row = new Uint8Array(stride);
+      for (let y = 0; y < h; y++) {
+        row[0] = 0;
+        const b = y * w;
+        for (let x = 0; x < w; x++) {
+          const v = depth16[b + x];
+          row[1 + x * 2] = v >>> 8; row[2 + x * 2] = v & 0xFF;
+        }
+        await writer.write(row);
+        if ((y & 255) === 255) await new Promise(r => setTimeout(r));
+      }
+      await writer.close();
+      while (!readDone) await new Promise(r => setTimeout(r, 5));
+      if (readErr) throw readErr;
+      const total = chunks.reduce((s, c) => s + c.length, 0);
+      const head = new Uint8Array(8);
+      new DataView(head.buffer).setUint32(0, total);
+      head.set([0x49, 0x44, 0x41, 0x54], 4);
+      const tail = new Uint8Array(4);
+      new DataView(tail.buffer).setUint32(0, crcC);
+      const ihdr = new Uint8Array(13);
+      const dv = new DataView(ihdr.buffer);
+      dv.setUint32(0, w); dv.setUint32(4, h); ihdr[8] = 16;
+      const sig = new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]);
+      return new Blob([sig, pngChunk('IHDR', ihdr), head, new Blob(chunks), tail,
+        pngChunk('IEND', new Uint8Array(0))], { type: 'image/png' });
+    }
+    async function exportDepth(kind) {
+      if (!state.fullCanvas) return toast('Muat gambar terlebih dahulu.', 'warn');
+      const busy = toast('Memproses resolusi penuh…', 'info', 0);
+      await new Promise(r => setTimeout(r, 40));
+      try {
+        const res = fullDepth();
+        const name = baseName();
+        if (kind === 'png8') {
+          const c = document.createElement('canvas');
+          c.width = res.w; c.height = res.h;
+          c.getContext('2d').putImageData(new ImageData(res.depth8, res.w, res.h), 0, 0);
+          saveBlob(await new Promise(r => c.toBlob(r, 'image/png')), name + '-depth8.png');
+        } else if (kind === 'png16') {
+          if (!('CompressionStream' in window)) throw new Error('tanpa CompressionStream');
+          saveBlob(await encodePNG16(res.depth16, res.w, res.h), name + '-depth16.png');
+        } else if (kind === 'pgm') {
+          saveBlob(encodePGM16(res.depth16, res.w, res.h), name + '-depth16.pgm');
+        } else if (kind === 'relief') {
+          const norm = Engine.reliefNormals(res.depth8, res.w, res.h, view.relief);
+          const img = Engine.relight(norm, res.w, res.h, viewer.light, view.material,
+            view.material === 'source' ? res.srcData.data : null);
+          const c = document.createElement('canvas');
+          c.width = res.w; c.height = res.h;
+          c.getContext('2d').putImageData(img, 0, 0);
+          saveBlob(await new Promise(r => c.toBlob(r, 'image/png')), name + '-relief.png');
+        }
+        busy.dismiss();
+        toast('Ekspor selesai — ' + res.w + '×' + res.h + ' · ' + kind.toUpperCase(), 'ok');
+      } catch (err) {
+        busy.dismiss();
+        if (kind === 'png16') {
+          toast('PNG 16-bit gagal di peramban ini — memakai PNG 8-bit.', 'warn', 5000);
+          exportDepth('png8');
+        } else toast('Ekspor gagal: ' + err.message, 'err', 5000);
+      }
+    }
+    $('#expPng16').addEventListener('click', () => exportDepth('png16'));
+    $('#expPng8').addEventListener('click', () => exportDepth('png8'));
+    $('#expPgm').addEventListener('click', () => exportDepth('pgm'));
+    $('#expRelief').addEventListener('click', () => exportDepth('relief'));
+
+    toast('Engine siap — pilih foto, seret ke kanvas, atau tempel Ctrl+V.', 'info', 4200);
+  }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 
-<!-- ═══════════ FLOW (js/flow.js — tertanam) ═══════════ -->
+<!-- ═══════════ FLOW ═══════════ -->
 <script>
 (() => {
   'use strict';
   const dz = document.getElementById('dropzone');
+  if (!dz) return;
   const steps = [...document.querySelectorAll('#steps .step')];
   const setStep = n => steps.forEach((s, i) => {
     s.classList.toggle('done', i < n);
@@ -1551,8 +1545,10 @@ class Viewer {
   setStep(0);
   new MutationObserver(() => setStep(dz.classList.contains('hide') ? 1 : 0))
     .observe(dz, { attributes: true, attributeFilter: ['class'] });
-  ['expPng16', 'expPng8', 'expPgm', 'expRelief'].forEach(id =>
-    document.getElementById(id).addEventListener('click', () => setStep(2)));
+  ['expPng16', 'expPng8', 'expPgm', 'expRelief'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => setStep(2));
+  });
 
   const TIPS = {
     'Blur dasar': 'Meredam noise/bintik sebelum dipetakan jadi kedalaman',
@@ -1574,7 +1570,7 @@ class Viewer {
       const l = c.querySelector('label');
       if (l && TIPS[l.textContent.trim()]) c.title = TIPS[l.textContent.trim()];
     });
-  }, 200);
+  }, 300);
 
   const fill = el => {
     const p = (el.value - el.min) / (el.max - el.min) * 100;
@@ -1583,9 +1579,8 @@ class Viewer {
   const syncAll = () => document.querySelectorAll('input[type=range]').forEach(fill);
   document.addEventListener('input', e => { if (e.target.matches('input[type=range]')) fill(e.target); });
   document.addEventListener('click', () => requestAnimationFrame(syncAll));
-  setTimeout(syncAll, 80); setTimeout(syncAll, 500); setTimeout(syncAll, 1500);
+  setTimeout(syncAll, 100); setTimeout(syncAll, 600); setTimeout(syncAll, 1600);
 })();
-window.addEventListener('load', () => { window.lucide && lucide.createIcons(); });
 </script>
 </body>
 </html>
