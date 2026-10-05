@@ -3,31 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DEPTHFORGE — Studio Konversi Depth Map</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect x='1' y='1' width='24' height='24' fill='none' stroke='%23E09A3E' stroke-width='2'/%3E%3Cpath d='M5 18c3-1 4-6 7-6s4 3 9-4' fill='none' stroke='%23E09A3E' stroke-width='2'/%3E%3C/svg%3E">
+<title>DEPTHFORGE — Foto Jadi Depth Map</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Crect x='1' y='1' width='24' height='24' fill='%230A0A0D'/%3E%3Cpath d='M5 18c3-1 4-6 7-6s4 3 9-4' fill='none' stroke='%23FCEE0A' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="topbar">
   <div class="brand">
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-      <rect x="1.5" y="1.5" width="23" height="23" stroke="#E09A3E" stroke-width="1.5"/>
-      <path d="M5 18c3-1 4-6 7-6s4 3 9-4" stroke="#E09A3E" stroke-width="1.5"/>
-      <path d="M5 22c4-2 5-9 8-9" stroke="#5A5142" stroke-width="1.5"/>
+    <svg width="28" height="28" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <rect x="1" y="1" width="24" height="24" stroke="#FCEE0A" stroke-width="1.4"/>
+      <path d="M5 18c3-1 4-6 7-6s4 3 9-4" stroke="#FCEE0A" stroke-width="1.6"/>
+      <path d="M5 22c4-2 5-9 8-9" stroke="#3D3D48" stroke-width="1.4"/>
     </svg>
     <div>
-      <h1>Depthforge</h1>
-      <small>studio konversi depth map · jpg / png → 16-bit</small>
+      <h1 data-text="Depthforge">Depthforge</h1>
+      <small>foto → depth map // diproses lokal</small>
     </div>
   </div>
-  <button class="chip" id="btnServer" title="Tes koneksi ke server Python lokal">
+  <button class="chip" id="btnServer" title="Tes koneksi ke server Python lokal (opsional)">
     <span class="dot" id="srvDot"></span>
     <i data-lucide="server"></i>
-    <span id="srvLabel">server python: mati</span>
+    <span id="srvLabel">server ai: mati</span>
   </button>
 </header>
 
@@ -35,83 +35,107 @@
   <!-- ============================ PANEL KONTROL ============================ -->
   <aside id="panel">
 
+    <nav class="steps" id="steps" aria-label="Progres">
+      <div class="step"><b class="n" data-n="1"></b><span>Unggah</span></div>
+      <div class="step"><b class="n" data-n="2"></b><span>Atur</span></div>
+      <div class="step"><b class="n" data-n="3"></b><span>Simpan</span></div>
+    </nav>
+
     <div class="grp">
-      <div class="grp-h"><span>01</span>Sumber</div>
+      <div class="grp-h"><i data-lucide="image-up"></i><span>01</span>Unggah Foto</div>
       <div class="row">
-        <button class="btn" id="btnPick"><i data-lucide="image-up"></i>Pilih gambar</button>
-        <button class="btn ghost" id="btnSample"><i data-lucide="dices"></i>Contoh</button>
+        <button class="btn" id="btnPick"><i data-lucide="folder-open"></i>Pilih Foto</button>
+        <button class="btn ghost" id="btnSample"><i data-lucide="sparkles"></i>Contoh</button>
       </div>
       <div class="field">
-        <label>Kanal kedalaman</label>
+        <label>Sumber kedalaman <em>bagian gambar yang diukur</em></label>
         <div class="seg" id="segChannel">
-          <button data-v="luma" class="on">Luma</button>
-          <button data-v="red">R</button>
-          <button data-v="green">G</button>
-          <button data-v="blue">B</button>
-          <button data-v="max">Max</button>
+          <button data-v="luma" class="on" title="Kecerahan keseluruhan — paling umum">Terang</button>
+          <button data-v="red" title="Saluran merah">R</button>
+          <button data-v="green" title="Saluran hijau">G</button>
+          <button data-v="blue" title="Saluran biru">B</button>
+          <button data-v="max" title="Nilai paling terang dari 3 saluran">Maks</button>
         </div>
       </div>
       <div class="field">
-        <label>Mode neural <em id="srvState">server mati</em></label>
+        <label>Mode AI <em id="srvState">opsional · butuh server lokal</em></label>
         <button class="btn ghost wide" id="btnNeural" style="margin-top:0">
-          <i data-lucide="cpu"></i><span>Konversi Neural (MiDaS)</span>
+          <span class="ic"><i data-lucide="cpu"></i></span>
+          <span class="t"><b>Konversi Neural</b><small>kedalaman lebih akurat via MiDaS</small></span>
         </button>
       </div>
     </div>
 
     <div class="grp">
-      <div class="grp-h"><span>02</span>Pipa pemetaan</div>
+      <div class="grp-h"><i data-lucide="sliders-horizontal"></i><span>02</span>Atur Kedalaman</div>
       <div class="field">
-        <label>Profil cepat</label>
+        <label>Gaya cepat <em>satu klik, atur otomatis</em></label>
         <div class="presets" id="presets">
-          <button data-p="foto">FOTO</button>
-          <button data-p="gravir">GRAVIR</button>
-          <button data-p="halus">HALUS</button>
+          <button data-p="foto" title="Seimbang untuk foto umum">Foto</button>
+          <button data-p="gravir" title="Tajam & kontras — untuk ukiran/CNC">Gravir</button>
+          <button data-p="halus" title="Lembut & mulus — untuk lithophane">Halus</button>
         </div>
       </div>
       <div id="slidersPipeline"></div>
       <div class="toggles">
-        <label class="tgl"><input type="checkbox" id="tglEq"><span></span>Equalize histogram</label>
-        <label class="tgl"><input type="checkbox" id="tglInv"><span></span>Invert (putih = tinggi)</label>
+        <label class="tgl" title="Merentang kontras agar gunung-lembah lebih terasa">
+          <input type="checkbox" id="tglEq"><span></span>Sebar kontras (equalize)
+        </label>
+        <label class="tgl" title="Standar relief: putih = bagian tinggi">
+          <input type="checkbox" id="tglInv"><span></span>Putih = tinggi (invert)
+        </label>
       </div>
-      <button class="btn ghost wide" id="btnReset"><i data-lucide="rotate-ccw"></i>Reset parameter</button>
+      <button class="btn ghost wide" id="btnReset"><i data-lucide="rotate-ccw"></i>Kembalikan semula</button>
     </div>
 
     <div class="grp">
-      <div class="grp-h"><span>03</span>Tampilan</div>
+      <div class="grp-h"><i data-lucide="palette"></i><span>03</span>Gaya Tampilan</div>
       <div class="field">
         <label>Peta warna</label>
         <select id="selCmap">
-          <option value="grayscale">Grayscale</option>
-          <option value="viridis">Viridis</option>
-          <option value="magma">Magma</option>
-          <option value="iron">Iron</option>
-          <option value="topo">Topografi</option>
+          <option value="grayscale">Grayscale — standar untuk mesin</option>
+          <option value="viridis">Viridis — ilmiah</option>
+          <option value="magma">Magma — hangat</option>
+          <option value="iron">Iron — panas</option>
+          <option value="topo">Topografi — peta</option>
         </select>
       </div>
       <div class="field">
-        <label>Material relief</label>
+        <label>Material relief <em>mode 3D</em></label>
         <select id="selMat">
-          <option value="gypsum">Gypsum</option>
+          <option value="gypsum">Gypsum (putih kapur)</option>
           <option value="source">Warna asal</option>
-          <option value="graphite">Grafit</option>
+          <option value="graphite">Grafit (gelap)</option>
           <option value="copper">Tembaga</option>
         </select>
       </div>
       <div id="slidersView"></div>
       <div class="row" style="margin-top:12px">
-        <button class="btn ghost" id="btnFit"><i data-lucide="scan"></i>Pas layar</button>
-        <button class="btn ghost" id="btnLight"><i data-lucide="sun"></i>Reset cahaya</button>
+        <button class="btn ghost" id="btnFit" title="Paskan gambar ke layar (F)"><i data-lucide="scan"></i>Pas layar</button>
+        <button class="btn ghost" id="btnLight" title="Kembalikan arah cahaya 3D (L)"><i data-lucide="sun"></i>Cahaya</button>
       </div>
     </div>
 
     <div class="grp">
-      <div class="grp-h"><span>04</span>Ekspor</div>
-      <button class="btn wide" id="expPng16"><i data-lucide="layers"></i>Depth PNG 16-bit</button>
-      <button class="btn ghost wide" id="expPng8"><i data-lucide="image-down"></i>Depth PNG 8-bit</button>
-      <button class="btn ghost wide" id="expPgm"><i data-lucide="binary"></i>RAW PGM 16-bit (.pgm)</button>
-      <button class="btn ghost wide" id="expRelief"><i data-lucide="mountain"></i>Relief terarsir PNG</button>
-      <p class="note">16-bit disarankan untuk CNC, lithophane &amp; emboss.<br>Ekspor dihitung ulang pada resolusi penuh.</p>
+      <div class="grp-h"><i data-lucide="download"></i><span>04</span>Simpan Hasil</div>
+      <button class="btn wide" id="expPng16">
+        <span class="ic"><i data-lucide="layers"></i></span>
+        <span class="t"><b>PNG 16-bit</b><small>terbaik untuk CNC & lithophane</small></span>
+      </button>
+      <button class="btn ghost wide" id="expPng8">
+        <span class="ic"><i data-lucide="image-down"></i></span>
+        <span class="t"><b>PNG 8-bit</b><small>ukuran kecil, untuk web</small></span>
+      </button>
+      <button class="btn ghost wide" id="expPgm">
+        <span class="ic"><i data-lucide="binary"></i></span>
+        <span class="t"><b>RAW PGM 16-bit</b><small>format mentah .pgm</small></span>
+      </button>
+      <button class="btn ghost wide" id="expRelief">
+        <span class="ic"><i data-lucide="mountain"></i></span>
+        <span class="t"><b>Gambar Relief</b><small>hasil 3D terarsir, siap cetak</small></span>
+      </button>
+      <p class="note">// semua ekspor dihitung ulang pada resolusi penuh —
+      gambar besar butuh beberapa detik_</p>
     </div>
 
   </aside>
@@ -120,10 +144,10 @@
   <section class="stage">
     <div class="stage-bar">
       <nav class="modes" id="modes">
-        <button data-mode="depth" class="on">Depth</button>
-        <button data-mode="relief">Relief</button>
-        <button data-mode="contour">Kontur</button>
-        <button data-mode="split">Banding</button>
+        <button data-mode="depth" class="on" title="Peta kedalaman"><i data-lucide="layers"></i>Kedalaman</button>
+        <button data-mode="relief" title="Relief 3D — seret untuk arah cahaya"><i data-lucide="mountain"></i>3D</button>
+        <button data-mode="contour" title="Garis kontur seperti peta"><i data-lucide="map"></i>Kontur</button>
+        <button data-mode="split" title="Bandingkan foto vs hasil"><i data-lucide="columns-2"></i>Banding</button>
       </nav>
       <div class="stage-hint" id="hint"></div>
       <div class="zoombox">
@@ -135,14 +159,20 @@
     <div class="viewport" id="viewport">
       <canvas id="canvas"></canvas>
       <div class="frame"></div>
+      <div class="hud tl"><span class="live"></span>sys://engine lokal — tanpa unggah</div>
+
       <div class="dropzone" id="dropzone">
         <div class="dz-inner">
-          <h2>Foto menjadi <em>peta kedalaman</em>.</h2>
-          <p>Seret &amp; lepas foto ke sini · tempel dengan Ctrl+V · atau pilih berkas.<br>
-             Keluaran: depth map 8/16-bit siap CNC, lithophane &amp; emboss.</p>
+          <h2>Foto apa pun menjadi<br><em>peta kedalaman</em></h2>
+          <p>Seret &amp; lepas · tempel Ctrl+V · atau pilih berkas.<br>Tanpa akun, tanpa install — semuanya di peramban Anda.</p>
+          <div class="dz-steps">
+            <div class="dz-card"><b class="n" data-n="1"></b><h4>Unggah foto</h4><p>JPG atau PNG, apa saja</p></div>
+            <div class="dz-card"><b class="n" data-n="2"></b><h4>Atur kedalaman</h4><p>Geser slider, hasil terlihat langsung</p></div>
+            <div class="dz-card"><b class="n" data-n="3"></b><h4>Simpan hasil</h4><p>PNG 16-bit siap CNC & lithophane</p></div>
+          </div>
           <div class="dz-actions">
-            <button class="btn" id="dzPick"><i data-lucide="image-up"></i>Pilih gambar</button>
-            <button class="btn ghost" id="dzSample"><i data-lucide="dices"></i>Muat contoh</button>
+            <button class="btn" id="dzPick"><i data-lucide="image-up"></i>Pilih Foto</button>
+            <button class="btn ghost" id="dzSample"><i data-lucide="sparkles"></i>Coba Contoh</button>
           </div>
         </div>
       </div>
@@ -166,5 +196,6 @@
 <script src="js/engine.js"></script>
 <script src="js/viewer.js"></script>
 <script src="js/app.js"></script>
+<script src="js/flow.js"></script>
 </body>
 </html>
