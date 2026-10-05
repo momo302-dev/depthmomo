@@ -105,7 +105,7 @@
     const c = $('#hist'), cx = c.getContext('2d');
     cx.clearRect(0, 0, c.width, c.height);
     let mx = 1; for (const v of hist) if (v > mx) mx = v;
-    cx.fillStyle = '#5D5446';
+    cx.fillStyle = 'rgba(252,238,10,.75)';
     const bw = c.width / hist.length;
     for (let i = 0; i < hist.length; i++) {
       const h = Math.pow(hist[i] / mx, 0.5) * (c.height - 2);
