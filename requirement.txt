@@ -1,0 +1,7 @@
+flask>=3.0
+pillow>=10.0
+numpy>=1.26
+
+# Opsi neural (MiDaS) — lepas komentar bila ingin mode AI:
+# torch>=2.1
+# timm>=0.9
