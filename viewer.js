@@ -1,7 +1,22 @@
-/* DepthForge · viewer.js
+/* DepthForge · viewer.js — TEMA CYBERFUNK (warna sudah terpasang)
+   ────────────────────────────────────────────────────────────────
    Viewport kanvas: mode Depth / Relief 3D / Kontur / Banding.
-   Interaksi: seret = arah cahaya (relief) atau geser, roda = zum,
-   dobel-klik = pas layar, animasi "scan reveal" saat gambar baru dimuat. */
+   Interaksi: seret = arah cahaya (mode 3D) atau geser, roda = zum,
+   dobel-klik = pas layar, animasi "scan reveal" saat gambar baru dimuat.
+
+   Ganti tema cukup ubah konstanta di bawah ini. */
+const THEME = {
+  acc:            '#FCEE0A',                 // kuning neon — aksen utama
+  accGlow:        'rgba(252,238,10,.85)',    // glow garis pemindai
+  cyan:           '#00F0FF',                 // aksen sekunder (ghost scan)
+  cyanSoft:       'rgba(0,240,255,.35)',
+  contourBg:      '#0A0A0E',                 // latar mode kontur
+  contourMinor:   '#4E5866',                 // garis kontur minor
+  panelFill:      '#101014',                 // kotak label / handle banding
+  panelLine:      '#30303A',                 // bingkai kotak label
+  mono:           '"Share Tech Mono", monospace'
+};
+
 class Viewer {
   constructor(canvas) {
     this.cv = canvas;
@@ -43,7 +58,7 @@ class Viewer {
   resetLight() { this.light = { x: -0.6, y: -0.55, z: 0.62 }; this.dirtyRelight = true; this.invalidate(); }
   invalidate() { if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = 0; this.render(); }); }
 
-  /* ---------- peta warna ---------- */
+  /* ---------- peta warna (akurat — tidak ikut tema) ---------- */
   _colorLUT(name) {
     const STOPS = {
       grayscale: [[0,0,0],[255,255,255]],
@@ -60,7 +75,7 @@ class Viewer {
     return lut;
   }
 
-  /* ---------- pembuatan lapisan (malas) ---------- */
+  /* ---------- pembuatan lapisan (malas / lazy) ---------- */
   _ensureDepthCv() {
     if (!this.dirtyDepth && this.depthCv) return;
     if (!this._lut || this._lutName !== this.colormap) { this._lut = this._colorLUT(this.colormap); this._lutName = this.colormap; }
@@ -141,19 +156,29 @@ class Viewer {
     const world = () => { cx.translate(this.t.ox, this.t.oy); cx.scale(this.t.s, this.t.s); };
 
     if (this.reveal < 1) {
+      /* sisi kiri: hasil depth — sisi kanan: gambar asal */
       cx.save(); cx.beginPath(); cx.rect(0, 0, W * this.reveal, H); cx.clip();
       cx.save(); world(); this._drawMode(cx); cx.restore(); cx.restore();
       cx.save(); cx.beginPath(); cx.rect(W * this.reveal, 0, W - W * this.reveal, H); cx.clip();
       cx.save(); world(); cx.drawImage(this.srcCanvas, 0, 0); cx.restore(); cx.restore();
+
+      /* garis pemindai: kuning neon menyala + bayangan cyan ala CRT */
       const lx = W * this.reveal;
-      cx.strokeStyle = '#E09A3E'; cx.lineWidth = 1.5;
+      cx.save();
+      cx.shadowColor = THEME.accGlow; cx.shadowBlur = 14;
+      cx.strokeStyle = THEME.acc; cx.lineWidth = 1.5;
       cx.beginPath(); cx.moveTo(lx, 0); cx.lineTo(lx, H); cx.stroke();
-      cx.font = '600 11px "JetBrains Mono", monospace';
+      cx.restore();
+      cx.strokeStyle = THEME.cyanSoft; cx.lineWidth = 1;
+      cx.beginPath(); cx.moveTo(lx - 4, 0); cx.lineTo(lx - 4, H); cx.stroke();
+
+      /* label persen */
+      cx.font = '11px ' + THEME.mono;
       const label = 'PEMINDAIAN ' + (this.reveal * 100).toFixed(0) + '%';
       const tw = cx.measureText(label).width;
-      cx.fillStyle = '#161412'; cx.fillRect(lx + 10, 14, tw + 16, 22);
-      cx.strokeStyle = '#3A3327'; cx.strokeRect(lx + 10.5, 14.5, tw + 16, 22);
-      cx.fillStyle = '#E09A3E'; cx.fillText(label, lx + 18, 29);
+      cx.fillStyle = THEME.panelFill; cx.fillRect(lx + 10, 14, tw + 16, 22);
+      cx.strokeStyle = THEME.panelLine; cx.strokeRect(lx + 10.5, 14.5, tw + 16, 22);
+      cx.fillStyle = THEME.acc; cx.fillText(label, lx + 18, 29);
     } else {
       cx.save(); world(); this._drawMode(cx); cx.restore();
     }
@@ -165,12 +190,12 @@ class Viewer {
       cx.drawImage(this.reliefCv, 0, 0);
     } else if (this.mode === 'contour') {
       this._ensureContour();
-      cx.fillStyle = '#191613'; cx.fillRect(0, 0, this.dw, this.dh);
+      cx.fillStyle = THEME.contourBg; cx.fillRect(0, 0, this.dw, this.dh);
       cx.globalAlpha = 0.16; cx.drawImage(this.depthCv, 0, 0); cx.globalAlpha = 1;
       const lw = 1 / this.t.s;
       for (let i = 0; i < this.contourPaths.length; i++) {
         const major = i % 5 === 0;
-        cx.strokeStyle = major ? '#E09A3E' : '#8F8574';
+        cx.strokeStyle = major ? THEME.acc : THEME.contourMinor;
         cx.lineWidth = major ? lw * 1.6 : lw;
         cx.stroke(this.contourPaths[i]);
       }
@@ -180,11 +205,11 @@ class Viewer {
       const hx = this.splitX * this.dw;
       cx.save(); cx.beginPath(); cx.rect(hx, 0, this.dw - hx, this.dh); cx.clip();
       cx.drawImage(this.depthCv, 0, 0); cx.restore();
-      cx.strokeStyle = '#E09A3E'; cx.lineWidth = 1.5 / this.t.s;
+      cx.strokeStyle = THEME.acc; cx.lineWidth = 1.5 / this.t.s;
       cx.beginPath(); cx.moveTo(hx, 0); cx.lineTo(hx, this.dh); cx.stroke();
       const r = 9 / this.t.s;
       cx.beginPath(); cx.arc(hx, this.dh / 2, r, 0, Math.PI * 2);
-      cx.fillStyle = '#161412'; cx.fill(); cx.stroke();
+      cx.fillStyle = THEME.panelFill; cx.fill(); cx.stroke();
       cx.beginPath(); cx.moveTo(hx - r * 0.35, this.dh / 2); cx.lineTo(hx + r * 0.35, this.dh / 2); cx.stroke();
     } else {
       this._ensureDepthCv();
